@@ -1,6 +1,7 @@
 package com.example.appcentertodolist
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,33 +38,21 @@ class HomeFragment : Fragment() {
         // 버튼 눌러서 추가 화면 전환
         binding.btnAddItem.setOnClickListener{
             val newFragment = AddItemFragment()
+            newFragment.setOnClickListener(object : OnClickListener{
+                override fun onClick(content: String, deadline: String) {
+                    todos.add(Todo(content,deadline))
+                }
+            })
             mActivity.switchFragment(newFragment)
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        fetchTodos()
     }
     private fun initRecyclerView(){
         binding.rcvRecyclerView.apply{
             adapter = mItemAdapter
+            mItemAdapter.submitList(todos)
             val layoutManager = LinearLayoutManager(context)
             this.layoutManager = layoutManager
             setHasFixedSize(true)
-            mItemAdapter.submitList(todos)
-        }
-    }
-    //start() 생명주기마다 새로 입력된 todo들을 todos에 추가
-    private fun fetchTodos(){
-        val check = arguments?.isEmpty ?: false
-        if(!check){
-            val contents = requireArguments().getStringArrayList("contents")
-            val deadlines = requireArguments().getStringArrayList("deadlines") ?: arrayListOf()
-            for(i in 1..contents!!.size){
-                val newTodo = Todo(contents[i], deadlines[i])
-                todos.add(newTodo)
-            }
         }
     }
 }

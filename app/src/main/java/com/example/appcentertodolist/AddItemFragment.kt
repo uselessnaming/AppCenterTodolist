@@ -13,6 +13,10 @@ class AddItemFragment() : Fragment() {
     private lateinit var binding : FragmentAddItemBinding
     private val newContents : ArrayList<String> = arrayListOf()
     private val newDeadlines : ArrayList<String> = arrayListOf()
+    private lateinit var onClickListener : OnClickListener
+    private val mActivity by lazy{
+        activity as MainActivity
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,30 +31,28 @@ class AddItemFragment() : Fragment() {
         binding.apply{
             // 추가 버튼 눌렀을 떄
             btnAdd.setOnClickListener{
+                // 비어 있는 거 있으면 Toast 알림
                 if(etContent.text.isEmpty() || etDeadline.text.isEmpty()){
                     showToast("값이 비어있습니다. 다 채워주세요")
-                } else {
+                }
+                // 없으면 todos에 추가 후 내용 비우기
+                else {
                     val content = etContent.text.toString()
                     val deadline = etDeadline.text.toString()
-                    newContents.add(content)
-                    newDeadlines.add(deadline)
+                    onClickListener.onClick(content,deadline)
                     showToast("추가 완료")
+                    etContent.text.clear()
+                    etDeadline.text.clear()
                 }
             }
             // 취소 버튼 눌렀을 때
             btnCancel.setOnClickListener{
-
+                mActivity.onBackPressed()
             }
         }
     }
-
-    override fun onPause() {
-        super.onPause()
-        val bundle = Bundle()
-        val homeFragment = HomeFragment()
-        bundle.putStringArrayList("contents",newContents)
-        bundle.putStringArrayList("deadlines",newDeadlines)
-        homeFragment.arguments = bundle
+    fun setOnClickListener(onClickListener : OnClickListener){
+        this.onClickListener = onClickListener
     }
     private fun showToast(s : String){
         Toast.makeText(context,s,Toast.LENGTH_SHORT).show()

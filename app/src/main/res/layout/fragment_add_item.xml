@@ -23,10 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_gravity="center"
+        android:hint="Deadline"
+        android:inputType="numberDecimal"
         android:layout_marginTop="50dp"
-        android:hint="Deadline" />
+        android:layout_gravity="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"

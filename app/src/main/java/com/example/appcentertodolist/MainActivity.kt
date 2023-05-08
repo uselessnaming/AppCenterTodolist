@@ -14,13 +14,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, HomeFragment()).commit()
+        supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, HomeFragment())
+            .setReorderingAllowed(true)
+            .commit()
     }
 
     fun switchFragment(fragment : Fragment){
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_add_item,fragment)
+        transaction.replace(R.id.fragmentContainerView,fragment)
             .setReorderingAllowed(true)
-        transaction.commit()
+            .addToBackStack(null)
+            .commit()
     }
 }
