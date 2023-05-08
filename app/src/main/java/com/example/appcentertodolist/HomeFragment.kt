@@ -26,9 +26,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-
         initRecyclerView()
-
         return binding.root
     }
 

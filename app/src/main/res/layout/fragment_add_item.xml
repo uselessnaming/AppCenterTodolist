@@ -18,13 +18,12 @@
         android:layout_marginTop="200dp"
         android:hint="Content"/>
 
-    <EditText
-        android:id="@+id/etDeadline"
+    <TextView
+        android:id="@+id/tvDeadline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Deadline"
-        android:inputType="numberDecimal"
+        android:textSize="20sp"
+        android:hint="Deadline 선택"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"/>
 

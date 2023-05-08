@@ -14,6 +14,8 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     private lateinit var binding : ItemBinding
     private var todos : MutableList<Todo> = mutableListOf()
 
+    private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemAdapter.ItemViewHolder {
         binding = ItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ItemViewHolder(binding)
@@ -37,11 +39,9 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
             binding.tvContent.text = todo.content
             binding.tvDeadline.text = todo.deadline
 
+
             //만약 daedline이 오늘 날짜보다 뒤라면 빨간 글씨
-            val formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")
-            val curTime = LocalDateTime.now()
-            val tmp = curTime.format(formatter)
-            val today = LocalDate.parse(tmp,formatter)
+            val today = LocalDate.now()
             val deadline = LocalDate.parse(todo.deadline,formatter)
             if (checkDeadline(deadline,today)){
                 binding.tvDeadline.setTextColor(Color.RED)
