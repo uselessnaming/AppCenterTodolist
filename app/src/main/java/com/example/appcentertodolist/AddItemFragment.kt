@@ -1,17 +1,12 @@
 package com.example.appcentertodolist
 
-import android.app.DatePickerDialog
-import android.app.ProgressDialog.show
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
-import android.widget.DatePicker
 import android.widget.Toast
 import com.example.appcentertodolist.databinding.FragmentAddItemBinding
-import java.util.*
 
 class AddItemFragment : Fragment() {
 
@@ -24,7 +19,7 @@ class AddItemFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAddItemBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -33,10 +28,10 @@ class AddItemFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         var deadline = ""
         binding.apply{
-            //Deadline을 설정하는 editText를 클릭했을 떄
+            //Deadline을 설정하는 EditText Click 시
             tvDeadline.setOnClickListener{
                 val datePickerFragment = DatePickerFragment()
-                //tvDeadline 클릭 시 Calendar 사용 날짜 선택
+                //tvDeadline 클릭 시 Calendar에서 날짜 선택
                 datePickerFragment.setOnDatePickerListener { _, year, month, dayOfMonth ->
                     deadline = "$year-"
                     if (month+1 < 10){
@@ -73,7 +68,7 @@ class AddItemFragment : Fragment() {
             }
             // 취소 버튼 눌렀을 때
             btnCancel.setOnClickListener{
-                mActivity.onBackPressed()
+                mActivity.onBackPressedDispatcher.onBackPressed()
             }
         }
     }
