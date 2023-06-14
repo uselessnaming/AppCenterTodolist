@@ -3,6 +3,7 @@ package com.example.appcentertodolist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.appcentertodolist.Login.LoginFragment
 import com.example.appcentertodolist.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,11 +16,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, HomeFragment())
+        supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, LoginFragment())
             .setReorderingAllowed(true)
             .commit()
     }
 
+    fun login(){
+        transaction.replace(R.id.fragment_home, HomeFragment())
+            .setReorderingAllowed(true)
+            .commit()
+    }
     fun switchFragment(fragment : Fragment){
         transaction.replace(R.id.fragmentContainerView,fragment)
             .setReorderingAllowed(true)

@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitObject {
-    private const val BASE_URL = ""
+    private const val BASE_URL = "https://jh-todo.inuappcenter.kr"
 
     private fun getRetrofit() : Retrofit {
         return Retrofit.Builder()
@@ -13,8 +13,11 @@ object RetrofitObject {
             .build()
     }
 
-    fun getRetrofitService() : RetrofitAPI{
-        return getRetrofit().create(RetrofitAPI::class.java)
+    fun getTaskRetrofitService() : TaskCtrlAPI{
+        return getRetrofit().create(TaskCtrlAPI::class.java)
     }
 
+    fun getUserRetrofitService() : UserAPI{
+        return getRetrofit().create(UserAPI::class.java)
+    }
 }

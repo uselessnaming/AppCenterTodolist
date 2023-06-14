@@ -4,9 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddItemFragment"
+    tools:context=".AddTodoFragment"
     android:orientation="vertical"
     android:id="@+id/fragment_add_item">
+
+    <EditText
+        android:id="@+id/etTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="text"
+        android:layout_marginTop="200dp"
+        android:hint="Title"/>
 
     <EditText
         android:id="@+id/etContent"
@@ -15,7 +25,7 @@
         android:layout_gravity="center"
         android:ems="10"
         android:inputType="text"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="50dp"
         android:hint="Content"/>
 
     <TextView

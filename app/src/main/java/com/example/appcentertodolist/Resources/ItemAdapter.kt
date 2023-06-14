@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter
 
 class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     private lateinit var binding : ItemBinding
-    private var todos : MutableList<Todo> = mutableListOf()
+    private var todos : MutableList<Task> = mutableListOf()
 
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
@@ -25,7 +25,7 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
     override fun getItemCount(): Int = todos.size
 
-    fun submitList(todos : MutableList<Todo>){
+    fun submitList(todos : ArrayList<Task>){
         this.todos.clear()
         this.todos.addAll(todos)
         notifyDataSetChanged()
@@ -33,17 +33,8 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(private var binding : ItemBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(todo : Todo){
-            binding.tvContent.text = todo.content
-            binding.tvDeadline.text = todo.deadline
+        fun bind(todo : Task){
 
-
-            //만약 daedline이 오늘 날짜보다 뒤라면 빨간 글씨
-            val today = LocalDate.now()
-            val deadline = LocalDate.parse(todo.deadline,formatter)
-            if (checkDeadline(deadline,today)){
-                binding.tvDeadline.setTextColor(Color.RED)
-            }
         }
     }
     private fun checkDeadline(deadline : LocalDate, today : LocalDate) : Boolean{
