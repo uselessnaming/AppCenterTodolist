@@ -76,9 +76,6 @@ class AddTodoFragment : Fragment() {
             }
         }
     }
-    fun setOnClickListener(onClickListener : OnClickListener){
-        this.onClickListener = onClickListener
-    }
     private fun showToast(s : String){
         Toast.makeText(context,s,Toast.LENGTH_SHORT).show()
     }

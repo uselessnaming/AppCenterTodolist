@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appcentertodolist.Resources.Interface.OnItemClickListener
 import com.example.appcentertodolist.databinding.ItemBinding
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -40,5 +41,11 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     private fun checkDeadline(deadline : LocalDate, today : LocalDate) : Boolean{
         if(deadline.isBefore(today)) return true
         return false
+    }
+
+    private lateinit var onClickLister : OnItemClickListener
+
+    fun setOnClickListener(lister : OnItemClickListener){
+        this.onClickLister = lister
     }
 }

@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.appcentertodolist.DataClasses.AddUserResponseBody
 import com.example.appcentertodolist.DataClasses.PostAddUserModel
 import com.example.appcentertodolist.MainActivity
@@ -29,6 +31,15 @@ class AddUserFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddUserBinding.inflate(layoutInflater, container, false)
+
+        val toolbar = binding.root.findViewById<Toolbar>(R.id.toolbar)
+        val activity = requireActivity() as AppCompatActivity
+        activity.setSupportActionBar(toolbar)
+
+        //메뉴 설정 불가
+        activity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        activity.supportActionBar?.setDisplayShowHomeEnabled(false)
+
         return binding.root
     }
 
